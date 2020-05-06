@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CalculadoraSaudavel</string>
+    <string name="imc">IMC</string>
+</resources>
