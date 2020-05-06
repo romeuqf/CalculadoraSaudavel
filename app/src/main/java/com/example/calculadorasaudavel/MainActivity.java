@@ -2,6 +2,7 @@ package com.example.calculadorasaudavel;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         MainAdapter adapter = new MainAdapter(mainItems);
         RecyclerView recyclerView = findViewById(R.id.recycleview);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
     }
 
