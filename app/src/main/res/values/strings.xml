@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">CalculadoraSaudavel</string>
     <string name="imc">IMC</string>
+    <string name="tbm">TMB</string>
+    <string name="imc_desc">IMC é a sigla para Índice de Massa Corpórea, parâmetro adotado pela Organização Mundial de Saúde para calcular o peso ideal de cada pessoa.
+O índice é calculado da seguinte maneira: divide-se o peso do paciente pela sua altura elevada ao quadrado. Diz-se que o indivíduo tem peso normal quando o resultado do IMC está entre 18,5 e 24,9.
+\n\nQuer descobrir seu IMC? Insira seu peso e sua altura nos campos abaixo.</string>
+    <string name="weight">Peso (kg)</string>
+    <string name="height">Alturam (cm)</string>
+    <string name="calc">Calcular</string>
+    <string name="fields_message">Todos os campos devem ser maiores que 0!</string>
+    <string name="imc_severely_low_weight">Severamente Abaixo do Peso</string>
+    <string name="imc_very_low_weight">Muito Abaixo do Peso</string>
+    <string name="imc_low_weight">Abaixo do Peso</string>
+    <string name="normal">Normal</string>
+    <string name="imc_high_weight">Acima do Peso</string>
+    <string name="imc_so_high_weight">Moderadamente Obsedo</string>
+    <string name="imc_severely_high_weight">Severamente Obeso</string>
+    <string name="imc_extreme_weight">Extremamente Obeso</string>
+    <string name="imc_response">Imc: %1.2f </string>
 </resources>

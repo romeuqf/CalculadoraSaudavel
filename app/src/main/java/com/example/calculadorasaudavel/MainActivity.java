@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,25 +24,23 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ArrayList<MainItem> mainItems = new ArrayList<>();
-        mainItems.add(new MainItem(R.drawable.ic_announcement_black_24dp, R.string.imc, 0xFFFF00FF));
-        mainItems.add(new MainItem(R.drawable.ic_announcement_black_24dp, R.string.imc, 0xFF0000FF));
-        mainItems.add(new MainItem(R.drawable.ic_announcement_black_24dp, R.string.imc, 0xFFFF0000));
-        mainItems.add(new MainItem(R.drawable.ic_announcement_black_24dp, R.string.imc, 0xFF110022));
-        mainItems.add(new MainItem(R.drawable.ic_announcement_black_24dp, R.string.imc, 0xFF550043));
-        mainItems.add(new MainItem(R.drawable.ic_announcement_black_24dp, R.string.imc, 0xFF6600FF));
+        mainItems.add(new MainItem(1, R.drawable.ic_announcement_black_24dp, R.string.imc, 0xFFFF00FF));
+        mainItems.add(new MainItem(2, R.drawable.ic_announcement_black_24dp, R.string.tbm, 0xFF0000FF));
 
-        MainAdapter adapter = new MainAdapter(mainItems);
+        MainAdapter adapter = new MainAdapter(this,mainItems);
         RecyclerView recyclerView = findViewById(R.id.recycleview);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
     }
 
-    class MainAdapter extends RecyclerView.Adapter<MainViewHolder> {
+    class MainAdapter extends RecyclerView.Adapter<MainViewHolder> implements MainViewHolder.OnItemClickListener {
 
         private final List<MainItem> mainItems;
+        private final MainActivity activity;
 
-        MainAdapter(List<MainItem> mainItems) {
+        MainAdapter(MainActivity activity, List<MainItem> mainItems) {
+            this.activity = activity;
             this.mainItems = mainItems;
         }
 
@@ -56,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
-            MainItem MainItem = this.mainItems.get(position);
-            holder.bind(MainItem);
+            MainItem mainItem = this.mainItems.get(position);
+            holder.bind(mainItem, this);
 
         }
 
@@ -65,10 +64,35 @@ public class MainActivity extends AppCompatActivity {
         public int getItemCount() {
             return mainItems.size();
         }
+
+        @Override
+        public void onClick(int position) {
+            MainItem mainItem = this.mainItems.get(position);
+            switch (mainItem.getId()) {
+
+                case 1: {
+                    Intent intent = new Intent(activity, ImcActivity.class);
+                    activity.startActivity(intent);
+                }
+                break;
+
+                case 2: {
+                    Intent intent = new Intent(activity, TmbActivity.class);
+                    activity.startActivity(intent);
+
+                }
+                break;
+            }
+        }
     }
 
 
     private static class MainViewHolder extends RecyclerView.ViewHolder {
+
+        interface OnItemClickListener {
+            void onClick(int position);
+        }
+
 
         private final ImageView imgViewMain;
         private final TextView textViewMain;
@@ -80,10 +104,12 @@ public class MainActivity extends AppCompatActivity {
             textViewMain = itemView.findViewById(R.id.item_main_text);
         }
 
-         void bind(MainItem mainItem) {
+        void bind(MainItem mainItem, final OnItemClickListener listener) {
             itemView.setBackgroundColor(mainItem.getColorValue());
             imgViewMain.setImageResource(mainItem.getImgId());
             textViewMain.setText(mainItem.getTextId());
+
+            itemView.setOnClickListener(v -> listener.onClick(getAdapterPosition()));
         }
     }
 }

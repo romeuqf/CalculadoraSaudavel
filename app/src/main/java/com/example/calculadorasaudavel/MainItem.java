@@ -1,27 +1,34 @@
 package com.example.calculadorasaudavel;
 
+
 class MainItem {
 
     private final int imgId;
     private final int textId;
     private final int colorValue;
+    private final int id;
 
 
-    MainItem(int imgId, int textId, int colorValue) {
+    MainItem(int id, int imgId, int textId, int colorValue) {
+        this.id = id;
         this.imgId = imgId;
         this.textId = textId;
         this.colorValue = colorValue;
     }
 
-    public int getImgId() {
+    int getImgId() {
         return imgId;
     }
 
-    public int getTextId() {
+    int getTextId() {
         return textId;
     }
 
-    public int getColorValue() {
+    int getColorValue() {
         return colorValue;
+    }
+
+    int getId() {
+        return id;
     }
 }
