@@ -4,6 +4,7 @@ import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -50,7 +51,13 @@ public class ImcActivity extends AppCompatActivity {
             AlertDialog alertDialog = new AlertDialog.Builder(ImcActivity.this)
                     .setTitle(getString(R.string.imc_response, imc))
                     .setMessage(resId)
-                    .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+                    .setNegativeButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+                    .setPositiveButton(R.string.save, (dialog, which) -> {SqlHelper sqlHelper = SqlHelper.getInstance(ImcActivity.this);
+                        long calcId = sqlHelper.addItem(SqlHelper.TYPE_IMC, imc);
+                        if(calcId > 0)
+                            Toast.makeText(ImcActivity.this,R.string.calc_save,Toast.LENGTH_LONG).show();
+
+                    })
                     .create();
 
             alertDialog.show();
