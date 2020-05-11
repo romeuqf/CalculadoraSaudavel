@@ -1,5 +1,6 @@
 package com.example.calculadorasaudavel;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.inputmethodservice.InputMethodService;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -52,10 +55,12 @@ public class ImcActivity extends AppCompatActivity {
                     .setTitle(getString(R.string.imc_response, imc))
                     .setMessage(resId)
                     .setNegativeButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
-                    .setPositiveButton(R.string.save, (dialog, which) -> {SqlHelper sqlHelper = SqlHelper.getInstance(ImcActivity.this);
+                    .setPositiveButton(R.string.save, (dialog, which) -> {
+                        SqlHelper sqlHelper = SqlHelper.getInstance(ImcActivity.this);
                         long calcId = sqlHelper.addItem(SqlHelper.TYPE_IMC, imc);
-                        if(calcId > 0)
-                            Toast.makeText(ImcActivity.this,R.string.calc_save,Toast.LENGTH_LONG).show();
+                        if (calcId > 0)
+                            Toast.makeText(ImcActivity.this, R.string.calc_save, Toast.LENGTH_LONG).show();
+                        openListCalcActivity();
 
                     })
                     .create();
@@ -64,13 +69,18 @@ public class ImcActivity extends AppCompatActivity {
 
             InputMethodManager im = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             assert im != null;
-            im.hideSoftInputFromWindow(editHeight.getWindowToken(),0);
-            im.hideSoftInputFromWindow(editWeight.getWindowToken(),0);
+            im.hideSoftInputFromWindow(editHeight.getWindowToken(), 0);
+            im.hideSoftInputFromWindow(editWeight.getWindowToken(), 0);
 
 
         });
+    }
 
+    private void openListCalcActivity() {
 
+        Intent intent = new Intent(ImcActivity.this, ListCalcActivity.class);
+        intent.putExtra("type", SqlHelper.TYPE_IMC);
+        ImcActivity.this.startActivity(intent);
     }
 
     @StringRes
@@ -106,5 +116,20 @@ public class ImcActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_list:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
 }

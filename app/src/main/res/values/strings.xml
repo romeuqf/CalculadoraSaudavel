@@ -20,4 +20,5 @@ O índice é calculado da seguinte maneira: divide-se o peso do paciente pela su
     <string name="imc_response">Imc: %1.2f </string>
     <string name="save">Salvar</string>
     <string name="calc_save">Registro Salvo com Sucesso</string>
+    <string name="search">Buscar</string>
 </resources>
