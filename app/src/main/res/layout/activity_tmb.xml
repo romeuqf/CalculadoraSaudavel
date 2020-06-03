@@ -1,8 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".TmbActivity">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".TmbActivity">
+
+        <TextView
+            style="@style/TextViewForm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tmb_desc" />
+
+        <EditText
+            android:id="@+id/tmb_weight"
+            style="@style/EditTextForm"
+            android:autofillHints="@string/weight"
+            android:hint="@string/weight"
+            android:maxLength="3" />
+
+        <EditText
+            android:id="@+id/tmb_heigt"
+            style="@style/EditTextForm"
+            android:autofillHints="@string/height"
+            android:hint="@string/height"
+            android:maxLength="3" />
+
+        <EditText
+            android:id="@+id/tmb_age"
+            style="@style/EditTextForm"
+            android:autofillHints="@string/age"
+            android:hint="@string/age"
+            android:maxLength="3" />
+
+        <Spinner
+            android:id="@+id/tmb_lifestyle"
+            style="@style/SpinnerForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/tmb_lifestyle" />
+
+        <Button
+            android:id="@+id/tmb_send"
+            style="@style/ButtonForm"
+            android:text="@string/calc" />
+
+    </LinearLayout>
+</ScrollView>

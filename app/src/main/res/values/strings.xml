@@ -18,7 +18,11 @@ O índice é calculado da seguinte maneira: divide-se o peso do paciente pela su
     <string name="imc_severely_high_weight">Severamente Obeso</string>
     <string name="imc_extreme_weight">Extremamente Obeso</string>
     <string name="imc_response">Imc: %1.2f </string>
+    <string name="tbm_response">Tmb: %1.2f </string>
     <string name="save">Salvar</string>
     <string name="calc_save">Registro Salvo com Sucesso</string>
     <string name="search">Buscar</string>
+    <string name="help">Ajuda</string>
+    <string name="tmb_desc">TMB é o cálculo para descobrir a quantidade calórica que o corpo necessita com base no seu estilo de vida</string>
+    <string name="age">Idade</string>
 </resources>
